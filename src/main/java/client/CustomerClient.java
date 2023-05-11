@@ -34,6 +34,7 @@ public class CustomerClient {
             printMenu();
             switch (getStandardInput("Select number", reader)) {
                 case "1" -> createClaim();
+                case "2" -> requestConsult();
                 case "x" -> {
                     System.out.println("System exit....");
                     return;
@@ -42,7 +43,18 @@ public class CustomerClient {
             }
         }
     }
+    
+    private static void requestConsult() {
+    	// 보험 상품 종류(1. 화재보험, 2. 암보험, 3. 자동차 보험)를 보여준다.
 
+        // 고객은 1 or 2 or 3 선택
+
+        // 선택을 했다면, "문의가 접수되었습니다"를 출력
+
+        // ServerImpl를 통해 employee에게 문의가 왔다는 것을 알림 & 응답 값으로 고객이 선택한 세부 정보(비용설명, 가입양식, 가입조건)를 출력한다.
+
+        // 고객은 가입 여부를 결정한다. (e.g. Y/n)
+    }
     private static boolean connect() {
         try {
             serverImpl = (ServerImpl) LocateRegistry.getRegistry(SERVER_HOST, SERVER_PORT_NUMBER)
@@ -66,6 +78,7 @@ public class CustomerClient {
     private static void printMenu() {
         System.out.println("***** Customer Menu *****");
         System.out.println("1. Create claim");
+        
         System.out.println("x. Exit");
     }
 
