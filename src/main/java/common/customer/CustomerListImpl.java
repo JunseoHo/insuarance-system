@@ -1,10 +1,5 @@
 package common.customer;
 
-
-import common.employee.Employee;
-import common.employee.Investigator;
-import compensation.ClaimListImpl;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.rmi.AlreadyBoundException;
@@ -23,6 +18,8 @@ public class CustomerListImpl extends UnicastRemoteObject implements CustomerLis
 
     public static void main(String[] args) {
         try {
+            System.setProperty("java.rmi.server.hostname", "localhost");
+
             Registry registry = LocateRegistry.createRegistry(PORT_NUMBER);
             registry.bind("CUSTOMER_LIST", new CustomerListImpl());
             System.out.println("CustomerList is running!");

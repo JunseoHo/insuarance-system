@@ -1,9 +1,5 @@
 package compensation;
 
-
-import common.employee.Employee;
-import common.employee.Investigator;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -23,6 +19,7 @@ public class ClaimListImpl extends UnicastRemoteObject implements ClaimList {
 
     public static void main(String[] args) {
         try {
+            System.setProperty("java.rmi.server.hostname", "localhost");
             Registry registry = LocateRegistry.createRegistry(PORT_NUMBER);
             registry.bind("CLAIM_LIST", new ClaimListImpl());
             System.out.println("ClaimList is running!");

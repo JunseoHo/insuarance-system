@@ -1,8 +1,5 @@
 package common.employee;
 
-
-import common.customer.CustomerListImpl;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.rmi.AlreadyBoundException;
@@ -21,6 +18,8 @@ public class EmployeeListImpl extends UnicastRemoteObject implements EmployeeLis
 
     public static void main(String[] args) {
         try {
+            System.setProperty("java.rmi.server.hostname", "localhost");
+
             Registry registry = LocateRegistry.createRegistry(PORT_NUMBER);
             registry.bind("EMPLOYEE_LIST", new EmployeeListImpl());
             System.out.println("EmployeeList is running!");

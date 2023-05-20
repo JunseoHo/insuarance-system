@@ -28,6 +28,8 @@ public class Server extends UnicastRemoteObject implements ServerImpl {
 
     public static void main(String[] args) {
         try {
+            System.setProperty("java.rmi.server.hostname", "localhost");
+
             Registry registry = LocateRegistry.createRegistry(PORT_NUMBER);
             registry.bind("SERVER", new Server());
             System.out.println("Server is running!");
