@@ -13,7 +13,6 @@ import java.rmi.registry.LocateRegistry;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 public class CustomerClient {
 
@@ -58,7 +57,7 @@ public class CustomerClient {
         while (customer == null) {
             String inputId = getStandardInput("Input your Customer ID (Typing 'x' to exit)", reader);
             if (inputId.equals("x")) return false;
-            if ((customer = serverImpl.getCustomer(inputId)) == null) System.out.println("Login failed");
+            if ((customer = serverImpl.getCustomer(Integer.parseInt(inputId))) == null) System.out.println("Login failed");
         }
         return true;
     }
@@ -72,8 +71,9 @@ public class CustomerClient {
     private static void createClaim() throws IOException {
         String[] values = new String[12];
         values[0] = UUID.randomUUID().toString();
-        values[1] = customer.getCustomerId();
-        values[2] = "none";
+        values[1] = String.valueOf(customer.getCustomerId());
+        // employee_id
+        values[2] = "1";
         while (values[3] == null) {
             if (!checkDateFormat(values[3] = getStandardInput("Input date (ex : 2023/05/10)", reader))) {
                 values[3] = null;
@@ -87,7 +87,7 @@ public class CustomerClient {
         values[8] = "0";
         values[9] = "none";
         values[10] = "none";
-        values[11] = "Reporting";
+        values[11] = "reporting";
         if (serverImpl.createClaim(new Claim(values)))
             System.out.println("You have been created new claim successfully!");
         else

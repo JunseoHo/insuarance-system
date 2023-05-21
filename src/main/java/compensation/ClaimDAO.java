@@ -7,7 +7,7 @@ import jdbc.RowMapper;
 public class ClaimDAO {
   public void addClaim(Claim claim) {
     JdbcTemplate template = new JdbcTemplate();
-    String sql = "insert into CLAIMS values(?,?,?,?,?,?,?,?,?,?,?)";
+    String sql = "insert into CLAIMS (compensation, customer_id, date, description, employee_id, is_paid, location, report, reviewer, review) values(?,?,?,?,?,?,?,?,?,?)";
     template.executeUpdate(sql,
         claim.getCompensation(), claim.getCustomerId(), claim.getDate(), claim.getDescription(),
         claim.getEmployeeId(), claim.isPaid(), claim.getLocation(), claim.getReport(),

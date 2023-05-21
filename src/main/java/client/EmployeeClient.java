@@ -26,7 +26,7 @@ public class EmployeeClient {
     public static void main(String[] args) throws IOException {
         if (!connect()) return;
         while (employee == null) {
-            employee = serverImpl.getEmployee(getStandardInput("Input your Employee ID", reader));
+            employee = serverImpl.getEmployee(Integer.parseInt(getStandardInput("Input your Employee ID", reader)));
             if (employee == null)
                 System.out.println("Login failed");
         }
@@ -76,14 +76,14 @@ public class EmployeeClient {
         List<Claim> claims = serverImpl.getClaims();
         System.out.println("< Claim List > ");
         for (Claim claim : claims) {
-            if (claim.getEmployeeId().equals(employee.getEmployeeId()))
+            if (claim.getEmployeeId() == (employee.getEmployeeId()))
                 System.out.println(claim);
         }
         Claim claim = null;
         while (claim == null) {
-            String claimId = getStandardInput("Input claim ID", reader);
+            int claimId = Integer.parseInt(getStandardInput("Input claim ID", reader));
             for (Claim element : claims) {
-                if (element.getClaimId().equals(claimId))
+                if (element.getClaimId() == (claimId))
                     claim = element;
             }
             if (claim == null)
@@ -117,9 +117,9 @@ public class EmployeeClient {
         }
         Claim claim = null;
         while (claim == null) {
-            String claimId = getStandardInput("Input claim ID", reader);
+            int claimId = Integer.parseInt(getStandardInput("Input claim ID", reader));
             for (Claim element : claims) {
-                if (element.getClaimId().equals(claimId))
+                if (element.getClaimId() == (claimId))
                     claim = element;
             }
             if (claim == null)

@@ -31,11 +31,13 @@ public class CustomerListImpl extends UnicastRemoteObject implements CustomerLis
 
     private static final String dbPath = "src/main/java/common/customer/customers";
     private List<Customer> customerList;
+    private CustomerDAO customerDAO;
 
     public CustomerListImpl() throws RemoteException {
         super();
         this.customerList = new ArrayList<>();
-        load();
+        this.customerDAO = new CustomerDAO();
+//        load();
     }
 
     private void load() {
@@ -50,18 +52,18 @@ public class CustomerListImpl extends UnicastRemoteObject implements CustomerLis
 
     @Override
     public boolean add(Customer customer) {
-        for (Customer element : customerList) {
-            if (element.getCustomerId().equals(customer.getCustomerId()))
-                return false;
-        }
+//        for (Customer element : customerList) {
+//            if (element.getCustomerId() == (customer.getCustomerId()))
+//                return false;
+//        }
         customerList.add(customer);
         return true;
     }
 
     @Override
-    public boolean remove(String customerId) throws RemoteException {
+    public boolean remove(int customerId) throws RemoteException {
         for (int idx = 0; idx < customerList.size(); idx++) {
-            if (customerList.get(idx).getCustomerId().equals(customerId)) {
+            if (customerList.get(idx).getCustomerId() == (customerId)) {
                 customerList.remove(idx);
                 return true;
             }
@@ -70,18 +72,14 @@ public class CustomerListImpl extends UnicastRemoteObject implements CustomerLis
     }
 
 
-    public Customer retrieve(String customerId) {
-        for (Customer element : customerList) {
-            if (element.getCustomerId().equals(customerId))
-                return element;
-        }
-        return null;
+    public Customer retrieve(int customerId) {
+        return this.customerDAO.findByCustomerId(customerId);
     }
 
     @Override
     public boolean update(Customer customer) throws RemoteException {
         for (int idx = 0; idx < customerList.size(); idx++) {
-            if (customerList.get(idx).getCustomerId().equals(customer.getCustomerId())) {
+            if (customerList.get(idx).getCustomerId() == (customer.getCustomerId())) {
                 customerList.set(idx, customer);
                 return true;
             }

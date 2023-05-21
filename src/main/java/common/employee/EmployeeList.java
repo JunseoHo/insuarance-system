@@ -9,9 +9,9 @@ public interface EmployeeList extends Remote {
 
     public boolean add(Employee employee) throws RemoteException;
 
-    public boolean remove(String employeeId) throws RemoteException;
+    public boolean remove(int employeeId) throws RemoteException;
 
-    public Employee retrieve(String employeeId) throws RemoteException;
+    public Employee retrieve(int employeeId) throws RemoteException;
 
     public List<Employee> retrieveAll() throws RemoteException;
 

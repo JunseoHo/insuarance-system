@@ -31,11 +31,13 @@ public class ClaimListImpl extends UnicastRemoteObject implements ClaimList {
 
     private static final String dbPath = "src/main/java/compensation/claims";
     private List<Claim> claimList;
+    private ClaimDAO claimDAO;
 
     public ClaimListImpl() throws RemoteException {
         super();
         this.claimList = new ArrayList<>();
-        load();
+        this.claimDAO = new ClaimDAO();
+//        load();
     }
 
     private void load() {
@@ -51,17 +53,18 @@ public class ClaimListImpl extends UnicastRemoteObject implements ClaimList {
     }
 
     public boolean add(Claim claim) {
-        for (Claim element : claimList) {
-            if (element.getClaimId().equals(claim.getClaimId())) return false;
-        }
-        this.claimList.add(claim);
-        return insert(claim.toString());
+//        for (Claim element : claimList) {
+//            if (element.getClaimId() == claim.getClaimId()) return false;
+//        }
+//        this.claimList.add(claim);
+        this.claimDAO.addClaim(claim);
+        return true;
     }
 
 
-    public boolean remove(String claimId) {
+    public boolean remove(int claimId) {
         for (int idx = 0; idx < claimList.size(); idx++) {
-            if (claimList.get(idx).getClaimId().equals(claimId)) {
+            if (claimList.get(idx).getClaimId() == claimId) {
                 this.claimList.remove(idx);
                 return true;
             }
@@ -70,9 +73,9 @@ public class ClaimListImpl extends UnicastRemoteObject implements ClaimList {
     }
 
 
-    public Claim retrieve(String claimId) {
+    public Claim retrieve(int claimId) {
         for (Claim element : claimList) {
-            if (element.getClaimId().equals(claimId)) return element;
+            if (element.getClaimId() == claimId) return element;
         }
         return null;
     }
@@ -84,7 +87,7 @@ public class ClaimListImpl extends UnicastRemoteObject implements ClaimList {
 
     public boolean update(Claim claim) {
         for (int idx = 0; idx < claimList.size(); idx++) {
-            if (claimList.get(idx).getClaimId().equals(claim.getClaimId())) {
+            if (claimList.get(idx).getClaimId() == (claim.getClaimId())) {
                 this.claimList.set(idx, claim);
                 return update(claim.toString());
             }

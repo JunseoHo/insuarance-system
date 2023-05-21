@@ -59,7 +59,7 @@ public class EmployeeListImpl extends UnicastRemoteObject implements EmployeeLis
     @Override
     public boolean add(Employee employee) throws RemoteException {
         for (Employee element : employeeList) {
-            if (element.getEmployeeId().equals(employee.getEmployeeId()))
+            if (element.getEmployeeId() == (employee.getEmployeeId()))
                 return false;
         }
         this.employeeList.add(employee);
@@ -67,9 +67,9 @@ public class EmployeeListImpl extends UnicastRemoteObject implements EmployeeLis
     }
 
     @Override
-    public boolean remove(String employeeId) throws RemoteException {
+    public boolean remove(int employeeId) throws RemoteException {
         for (int idx = 0; idx < employeeList.size(); idx++) {
-            if (employeeList.get(idx).getEmployeeId().equals(employeeId)) {
+            if (employeeList.get(idx).getEmployeeId() == (employeeId)) {
                 this.employeeList.remove(idx);
                 return true;
             }
@@ -78,9 +78,9 @@ public class EmployeeListImpl extends UnicastRemoteObject implements EmployeeLis
     }
 
     @Override
-    public Employee retrieve(String employeeId) throws RemoteException {
+    public Employee retrieve(int employeeId) throws RemoteException {
         for (Employee element : employeeList) {
-            if (element.getEmployeeId().equals(employeeId))
+            if (element.getEmployeeId() == (employeeId))
                 return element;
         }
         return null;
@@ -94,7 +94,7 @@ public class EmployeeListImpl extends UnicastRemoteObject implements EmployeeLis
     @Override
     public boolean update(Employee employee) throws RemoteException {
         for (int idx = 0; idx < employeeList.size(); idx++) {
-            if (employeeList.get(idx).getEmployeeId().equals(employee.getEmployeeId())) {
+            if (employeeList.get(idx).getEmployeeId() == (employee.getEmployeeId())) {
                 this.employeeList.set(idx, employee);
                 return true;
             }

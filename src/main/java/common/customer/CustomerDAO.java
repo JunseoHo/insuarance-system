@@ -11,7 +11,7 @@ public class CustomerDAO {
     template.executeUpdate(sql, customer.getBankAccount(), customer.getBirth(), customer.getFamilyHistory(), customer.isGender(), customer.getHealthExaminationRecord(), customer.getJob(), customer.getName());
   }
 
-  public Customer findByCustomerId(String customerId) {
+  public Customer findByCustomerId(int customerId) {
     RowMapper<Customer> rm = rs ->
         new Customer(
             rs.getInt("id"),
