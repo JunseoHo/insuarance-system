@@ -9,9 +9,9 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ServerImpl extends Remote {
-    Customer getCustomer(String customerId) throws RemoteException;
+    Customer getCustomer(int customerId) throws RemoteException;
 
-    Employee getEmployee(String employeeId) throws RemoteException;
+    Employee getEmployee(int employeeId) throws RemoteException;
 
     List<Claim> getClaims() throws RemoteException;
 

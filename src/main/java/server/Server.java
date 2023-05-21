@@ -57,12 +57,12 @@ public class Server extends UnicastRemoteObject implements ServerImpl {
     }
 
     @Override
-    public Customer getCustomer(String customerId) throws RemoteException {
+    public Customer getCustomer(int customerId) throws RemoteException {
         return customerListImpl.retrieve(customerId);
     }
 
     @Override
-    public Employee getEmployee(String employeeId) throws RemoteException {
+    public Employee getEmployee(int employeeId) throws RemoteException {
         return employeeListImpl.retrieve(employeeId);
     }
 
