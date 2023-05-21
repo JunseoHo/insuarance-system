@@ -52,21 +52,19 @@ create table if not exists CLAIMS
     customer_id  bigint                                                  not null,
     date         varchar(100)                                            not null,
     description  text                                                    null,
-    employee_id  bigint                                                  not null,
+    employee_id  bigint                                                  null,
     is_paid      tinyint(1)                                              null,
     location     varchar(255)                                            not null,
     report       varchar(255)                                            null,
     reviewer     bigint                                                  null,
-    review       enum ('reviewing', 'reporting', 'accepted', 'rejected') not null,
+    review       enum ('reviewing', 'reporting', 'accepted', 'rejected') null,
     constraint CLAIMS_customers_id_fk
         foreign key (customer_id) references CUSTOMERS (id)
             on update cascade on delete cascade,
     constraint claims_employees_id_fk
-        foreign key (employee_id) references EMPLOYEES (id)
-            on update cascade,
+        foreign key (employee_id) references EMPLOYEES (id),
     constraint claims_employees_id_fk2
         foreign key (reviewer) references EMPLOYEES (id)
-            on update cascade
 )
     collate = utf8mb4_bin;
 
@@ -80,6 +78,7 @@ create table if not exists insurance_development
     rate                   int          null,
     profit_n_loss_analysis varchar(255) null
 );
+
 
 
 -- Add dummy data
