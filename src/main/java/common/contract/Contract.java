@@ -20,10 +20,21 @@ public class Contract {
 	private int rate;
 	private String teamsOfSubscription;
 	private int type;
-	private List<File> underwritingReport;
+	private String underwritingReport;
 
 	public Contract(){
 
+	}
+
+	public Contract(String compensationTeams, int customerId, int fee, int id, String name, int rate, String teamsOfSubscription, String underwritingReport) {
+		this.compensationTeams = compensationTeams;
+		this.customerId = customerId;
+		this.fee = fee;
+		this.id = id;
+		this.name = name;
+		this.rate = rate;
+		this.teamsOfSubscription = teamsOfSubscription;
+		this.underwritingReport = underwritingReport;
 	}
 
 	public void finalize() throws Throwable {
@@ -34,4 +45,39 @@ public class Contract {
 		return false;
 	}
 
+	public String getCompensationTeams() {
+		return compensationTeams;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public int getFee() {
+		return fee;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public String getTeamsOfSubscription() {
+		return teamsOfSubscription;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public String getUnderwritingReport() {
+		return underwritingReport;
+	}
 }
