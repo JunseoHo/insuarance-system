@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Customer implements Serializable {
 
     // ids
-    private String customerId;
+    private int customerId;
     // personal info
     private String name;
     private int age;
@@ -30,11 +30,24 @@ public class Customer implements Serializable {
         setHealthExaminationRecord(values[8]);
     }
 
-    public String getCustomerId() {
+    public Customer(int customerId, String name, boolean gender, String birth,
+        String job,
+        String bankAccount, String familyHistory, String healthExaminationRecord) {
+        this.customerId = customerId;
+        this.name = name;
+        this.gender = gender;
+        this.birth = birth;
+        this.job = job;
+        this.bankAccount = bankAccount;
+        this.familyHistory = familyHistory;
+        this.healthExaminationRecord = healthExaminationRecord;
+    }
+
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
