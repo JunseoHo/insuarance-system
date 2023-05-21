@@ -1,3 +1,5 @@
+USE nemne_insurance;
+
 create table if not exists customers
 (
     id                        bigint auto_increment
@@ -48,7 +50,6 @@ create table if not exists claims
     customer_id  bigint                                                  not null,
     date         varchar(100)                                            not null,
     description  text                                                    null,
-    document     varchar(255)                                            not null,
     employee_id  bigint                                                  not null,
     is_paid      tinyint(1)                                              null,
     location     varchar(255)                                            not null,
@@ -67,3 +68,13 @@ create table if not exists claims
 )
     collate = utf8mb4_bin;
 
+create table if not exists insurance_development
+(
+    id                     bigint       not null
+        primary key,
+    product_name           varchar(255) null,
+    target                 varchar(255) null,
+    compensation_detail    text         null,
+    rate                   int          null,
+    profit_n_loss_analysis varchar(255) null
+);
