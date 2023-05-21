@@ -19,7 +19,7 @@ public class Customer implements Serializable {
     private String healthExaminationRecord;
 
     public Customer(String values[]) {
-        setCustomerId(values[0]);
+        setCustomerId(Integer.parseInt(values[0]));
         setName(values[1]);
         setAge(Integer.parseInt(values[2]));
         setGender(values[3].equals("M"));

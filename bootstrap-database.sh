@@ -1,20 +1,22 @@
 #!/bin/sh
 
 
-if [[ -z `docker info | grep 'Server Version'` ]]
+if [[ -n `docker info | grep 'Server Version'` ]]
 then
-  if [[ -n `docker ps --all | grep distributed_programming` ]]
+  if [[ `docker ps --all | grep distributed_programming` != *"Up"* ]]
   then
-    echo 'hi'
     dokcer pull --platform=linux/amd64 docker.io/library/mysql:8.0.28
     docker create --platform=linux/amd64 -p 3306:3306 --name distributed_programming -e MYSQL_ALLOW_EMPTY_PASSWORD=true docker.io/library/mysql:8.0.28
     docker restart distributed_programming
+
+    echo 'initializing mysql...'
+
+    sleep 5
   fi
 fi
 
 if [[ -z `docker ps | grep distributed_programming` ]]
 then
-  echo 'ss'
   DB_HOSTNAME='localhost'
 else
   DB_HOSTNAME='127.0.0.1'

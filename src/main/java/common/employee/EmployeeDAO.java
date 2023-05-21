@@ -7,7 +7,7 @@ import jdbc.RowMapper;
 public class EmployeeDAO {
   public void addEmployee(Employee employee) {
     JdbcTemplate template = new JdbcTemplate();
-    String sql = "insert into EMPLOYEES values(?,?,?,?)";
+    String sql = "insert into EMPLOYEES (birth, department, gender, name) values(?,?,?,?)";
     template.executeUpdate(sql, employee.getBirth(), employee.getDepartment(), employee.isGender(), employee.getName());
   }
 

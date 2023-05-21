@@ -7,7 +7,7 @@ import jdbc.RowMapper;
 public class CustomerDAO {
   public void addCustomer(Customer customer) {
     JdbcTemplate template = new JdbcTemplate();
-    String sql = "insert into CUSTOMERS values(?,?,?,?,?,?,?,?)";
+    String sql = "insert into CUSTOMERS (bank_account, birth, family_history, gender, health_examination_record, job, name) values(?,?,?,?,?,?,?,?)";
     template.executeUpdate(sql, customer.getBankAccount(), customer.getBirth(), customer.getFamilyHistory(), customer.isGender(), customer.getHealthExaminationRecord(), customer.getJob(), customer.getName());
   }
 

@@ -1,6 +1,8 @@
 USE nemne_insurance;
 
-create table if not exists customers
+-- Initialize tables
+
+create table if not exists CUSTOMERS
 (
     id                        bigint auto_increment
         primary key,
@@ -14,7 +16,7 @@ create table if not exists customers
 )
     collate = utf8mb4_bin;
 
-create table if not exists contracts
+create table if not exists CONTRACTS
 (
     id                    bigint auto_increment
         primary key,
@@ -25,13 +27,13 @@ create table if not exists contracts
     terms_of_subscription text         not null,
     underwriting_report   varchar(255) null,
     customer_id           bigint       null,
-    constraint contracts_customers_id_fk
-        foreign key (customer_id) references customers (id)
+    constraint CONTRACTS_customers_id_fk
+        foreign key (customer_id) references CUSTOMERS (id)
             on update cascade on delete cascade
 )
     collate = utf8mb4_bin;
 
-create table if not exists employees
+create table if not exists EMPLOYEES
 (
     id         bigint auto_increment
         primary key,
@@ -42,7 +44,7 @@ create table if not exists employees
 )
     collate = utf8mb4_bin;
 
-create table if not exists claims
+create table if not exists CLAIMS
 (
     id           bigint auto_increment
         primary key,
@@ -56,14 +58,14 @@ create table if not exists claims
     report       varchar(255)                                            null,
     reviewer     bigint                                                  null,
     review       enum ('reviewing', 'reporting', 'accepted', 'rejected') not null,
-    constraint claims_customers_id_fk
-        foreign key (customer_id) references customers (id)
+    constraint CLAIMS_customers_id_fk
+        foreign key (customer_id) references CUSTOMERS (id)
             on update cascade on delete cascade,
     constraint claims_employees_id_fk
-        foreign key (employee_id) references employees (id)
+        foreign key (employee_id) references EMPLOYEES (id)
             on update cascade,
     constraint claims_employees_id_fk2
-        foreign key (reviewer) references employees (id)
+        foreign key (reviewer) references EMPLOYEES (id)
             on update cascade
 )
     collate = utf8mb4_bin;
@@ -78,3 +80,14 @@ create table if not exists insurance_development
     rate                   int          null,
     profit_n_loss_analysis varchar(255) null
 );
+
+
+-- Add dummy data
+INSERT INTO CUSTOMERS (bank_account, birth, family_history, gender, health_examination_record, job, name) values('KB92938202-20-2938293', '1999-10-29', 'none', False, 'none', 'Student', 'Junseo');
+
+INSERT INTO EMPLOYEES (birth, department, gender, name) values('1992-05-03', 'investigating', False, 'James');
+INSERT INTO EMPLOYEES (birth, department, gender, name) values('1993-02-10', 'investigating', True, 'Nella');
+INSERT INTO EMPLOYEES (birth, department, gender, name) values('1980-02-03', 'supporting', False, 'Paul');
+INSERT INTO EMPLOYEES (birth, department, gender, name) values('1980-02-03', 'supporting', True, 'Emma');
+
+INSERT INTO CLAIMS (compensation, customer_id, date, description, employee_id, is_paid, location, report, reviewer, review) values('3098345', 1, '2023-05-23', 'none', 1, False, 'seoul_korean', 'https://your-bucket-name.s3.amazonaws.com/randomString/report.docx', 2, 'reviewing');
