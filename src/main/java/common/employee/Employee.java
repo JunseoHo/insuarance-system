@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Employee implements Serializable {
 
     // ids
-    private String employeeId;
+    private int employeeId;
     // personal info
     private String name;
     private boolean gender;
@@ -14,18 +14,27 @@ public class Employee implements Serializable {
     private String department;
 
     public Employee(String[] values) {
-        setEmployeeId(values[0]);
+        setEmployeeId(Integer.parseInt(values[0]));
         setDepartment(values[1]);
         setGender(values[2].equals("M"));
         setBirth(values[3]);
         setDepartment(values[4]);
     }
 
-    public String getEmployeeId() {
+    public Employee(int employeeId, String name, boolean gender, String birth,
+        String department) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.gender = gender;
+        this.birth = birth;
+        this.department = department;
+    }
+
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
