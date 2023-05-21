@@ -6,9 +6,9 @@ import java.io.Serializable;
 public class Claim implements Serializable {
 
     // ids
-    private String claimId;
-    private String customerId;
-    private String employeeId;
+    private int claimId;
+    private int customerId;
+    private int employeeId;
     // info
     private String date;
     private String type;
@@ -17,46 +17,63 @@ public class Claim implements Serializable {
     // review
     private String report;
     private int compensation;
-    private String reviewer;
+    private int reviewer;
     private boolean isPaid;
     private String review = "Reporting";
 
     public Claim(String[] values) {
-        this.claimId = values[0];
-        this.customerId = values[1];
-        this.employeeId = values[2];
+        this.claimId = Integer.parseInt(values[0]);
+        this.customerId = Integer.parseInt(values[1]);
+        this.employeeId = Integer.parseInt(values[2]);
         this.date = values[3];
         this.type = values[4];
         this.description = values[5];
         this.location = values[6];
         this.report = values[7];
         this.compensation = Integer.parseInt(values[8]);
-        this.reviewer = values[9];
+        this.reviewer = Integer.parseInt(values[9]);
         this.isPaid = values[10].equals("P");
         this.review = values[11];
     }
 
-    public String getClaimId() {
+    public Claim(int claimId, int customerId, int employeeId, String date, String type, String description,
+        String location, String report, int compensation, int reviewer, boolean isPaid,
+        String review) {
+        this.claimId = claimId;
+        this.customerId = customerId;
+        this.employeeId = employeeId;
+        this.date = date;
+        this.type = type;
+        this.description = description;
+        this.location = location;
+        this.report = report;
+        this.compensation = compensation;
+        this.reviewer = reviewer;
+        this.isPaid = isPaid;
+        this.review = review;
+    }
+
+    public int getClaimId() {
         return claimId;
     }
 
-    public void setClaimId(String claimId) {
+    public void setClaimId(int claimId) {
         this.claimId = claimId;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-    public String getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -108,11 +125,11 @@ public class Claim implements Serializable {
         this.compensation = compensation;
     }
 
-    public String getReviewer() {
+    public int getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(String reviewer) {
+    public void setReviewer(int reviewer) {
         this.reviewer = reviewer;
     }
 
