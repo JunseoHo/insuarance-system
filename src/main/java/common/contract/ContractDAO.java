@@ -7,6 +7,7 @@ import jdbc.RowMapper;
 public class ContractDAO {
   public void addContract(Contract contract) {
     JdbcTemplate template = new JdbcTemplate();
+    // TODO reflect contract_id
     String sql = "insert into CONTRACTS values(?,?,?,?,?,?,?)";
     template.executeUpdate(sql, contract.getCompensationTeams(), contract.getCustomerId(), contract.getFee(), contract.getName(), contract.getRate(), contract.getTeamsOfSubscription(), contract.getUnderwritingReport());
   }
